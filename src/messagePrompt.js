@@ -52,6 +52,31 @@ export async function messageType() {
     });
 }
 
+export async function commitBreakingChanges() {
+  return inquirer.prompt([
+    {
+      type: 'confirm',
+      name: 'breakingChanges',
+      message: 'Add "!" to prefix?',
+      default: false,
+    },
+  ]).then(answers => {
+    return answers.breakingChanges;
+  });
+}
+
+export async function commitPrefixContext() {
+  return inquirer.prompt([
+    {
+      type: 'input',
+      name: 'prefixContext',
+      message: 'Prefix context (leave empty to skip):'
+    },
+  ]).then(answers => {
+    return answers.prefixContext;
+  });
+}
+
 export async function messageGitmoji() {
   return inquirer
     .prompt([

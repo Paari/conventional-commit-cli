@@ -2,7 +2,7 @@
 import { spawn } from 'child_process';
 import inquirer from 'inquirer';
 import inquirerPrompt from 'inquirer-search-list';
-import { messageType, messageGitmoji, commitMessage, commitDescription } from './src/messagePrompt.js';
+import { messageType, commitBreakingChanges, commitPrefixContext, messageGitmoji, commitMessage, commitDescription } from './src/messagePrompt.js';
 
 inquirer.registerPrompt('search-list', inquirerPrompt);
 
@@ -10,6 +10,14 @@ inquirer.registerPrompt('search-list', inquirerPrompt);
 // ask for type of commit
 let messageTypeValue = await messageType();
 console.log(messageTypeValue);
+
+// ask for "!" to provide BREAKING CHANGE
+let commitBreakingChangesValue = await commitBreakingChanges();
+console.log(commitBreakingChangesValue)
+
+// ask for prefix context
+let commitPrefixContextValue = await commitPrefixContext();
+console.log(commitPrefixContextValue)
 
 // ask for gitmoji
 let messageGitmojiValue = await messageGitmoji();
@@ -37,7 +45,7 @@ if (addDescription.commitDescription) {
 
 // compose the commit message
 let finalMessage = 
-`${messageTypeValue}: ${messageGitmojiValue} ${commitMessageValue}
+`${messageTypeValue.length != 0 ? messageTypeValue : ''}${commitPrefixContextValue.length != 0 ? `(${commitPrefixContextValue})` : ''}${commitBreakingChangesValue ? '!' : ''}${(messageTypeValue + commitPrefixContextValue).length != 0 ? ':' : ''} ${messageGitmojiValue} ${commitMessageValue}
 
 ${commitDescriptionValue}`;
 

@@ -50,9 +50,20 @@ The first prompt is about the type of commit you are making. Following are the o
 - **security**: Fix security issues
 - **breaking**: Introduce breaking changes
 
+### Select if it a breaking change commits
+
+<!-- TODO: It would be better to owner of project to record and insert gifs -->
+- **y**: For breaking changes. It will add "!" at the end of commit's prefix
+- **N**: For regular commits
+
+### Add commit context
+
+<!-- TODO: It would be better to owner of project to record and insert gifs -->
+You will be prompted to enter a context of commit in braces. For example: `feat(auth)`
+
 ### Select a Gitmoji
 
-The second prompt is about selecting a Gitmoji. Gitmoji is an emoji guide for your commit messages. You can find more about it [here](https://gitmoji.dev/).
+The fourth prompt is about selecting a Gitmoji. Gitmoji is an emoji guide for your commit messages. You can find more about it [here](https://gitmoji.dev/).
 
 ![Select Gitmoji](./imgs/demo-emoji.gif)
 
